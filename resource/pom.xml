@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <artifactId>bloggin.resource</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>quarkus-maven-plugin</artifactId>
+                <groupId>io.quarkus.platform</groupId>
+                <version>3.16.2</version>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>generate-code</goal>
+                            <goal>generate-code-tests</goal>
+                            <goal>native-image-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <artifactId>bloggin.domain.service</artifactId>
+            <groupId>de.ottorohenkohl</groupId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <artifactId>quarkus-jdbc-postgresql</artifactId>
+            <groupId>io.quarkus</groupId>
+        </dependency>
+        <dependency>
+            <artifactId>quarkus-rest</artifactId>
+            <groupId>io.quarkus</groupId>
+        </dependency>
+        <dependency>
+            <artifactId>quarkus-rest-jackson</artifactId>
+            <groupId>io.quarkus</groupId>
+        </dependency>
+    </dependencies>
+
+    <parent>
+        <artifactId>bloggin</artifactId>
+        <groupId>de.ottorohenkohl</groupId>
+        <version>1.0</version>
+    </parent>
+</project>
