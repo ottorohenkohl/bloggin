@@ -36,12 +36,18 @@ public class FileResource extends BaseResource {
     }
     
     @Path("/")
+    @GET
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    public Response getExistingFiles(@QueryParam("count") Integer count, @QueryParam("start") Integer start) {
+        return Response.ok(fileService.findExistingFiles(getPage(count, start))).build();
+    }
+    
+    @Path("/")
     @POST
     @Consumes(WILDCARD)
     @Produces(APPLICATION_JSON)
     public Response postFreshFile(@Context HttpHeaders headers, Byte[] bytes) {
-        var newFile = new FileFresh(bytes, headers.getHeaderString("Content-Type"));
-        
-        return Response.created(getPath("/file/%s", fileService.storeFreshFile(newFile).identifier())).build();
+        return Response.created(getPath("/file/%s", fileService.storeFreshFile(new FileFresh(bytes, headers.getHeaderString("Content-Type"))).identifier())).build();
     }
 }
