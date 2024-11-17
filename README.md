@@ -1,6 +1,6 @@
 # Bloggin
 
-[![pipeline status](http://lab.ottorohenkohl.de/bloggin/backend/badges/main/pipeline.svg)](http://lab.ottorohenkohl.de/bloggin/backend/-/commits/main) [![coverage report](http://lab.ottorohenkohl.de/bloggin/backend/badges/main/coverage.svg)](http://lab.ottorohenkohl.de/bloggin/backend/-/commits/main) [![Latest Release](http://lab.ottorohenkohl.de/bloggin/backend/-/badges/release.svg)](http://lab.ottorohenkohl.de/bloggin/backend/-/releases)
+[![pipeline status](http://lab.ottorohenkohl.de/entwicklung/java/bloggin/badges/main/pipeline.svg)](http://lab.ottorohenkohl.de/entwicklung/java/bloggin/-/commits/main) [![coverage report](http://lab.ottorohenkohl.de/entwicklung/java/bloggin/badges/main/coverage.svg)](http://lab.ottorohenkohl.de/entwicklung/java/bloggin/-/commits/main) [![Latest Release](http://lab.ottorohenkohl.de/entwicklung/java/bloggin/-/badges/release.svg)](http://lab.ottorohenkohl.de/entwicklung/java/bloggin/-/releases)
 
 Das **Bloggin** backend ist die serverseitige Komponente für das Bloggin CMS. Als **modulares Multi-Module Maven-Projekt** aufgebaut, folgt es einer **strikten Architektur** für eine flexible, erweiterbare und gut wartbare Codebasis.
 
