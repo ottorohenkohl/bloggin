@@ -3,7 +3,6 @@ package de.ottorohenkohl.bloggin.domain.site;
 import de.ottorohenkohl.bloggin.domain.core.ConsumingMapper;
 import de.ottorohenkohl.bloggin.domain.core.value.IdentifierMapper;
 import de.ottorohenkohl.bloggin.domain.core.value.TypeMapper;
-import de.ottorohenkohl.bloggin.domain.file.FileExistingMapper;
 import de.ottorohenkohl.bloggin.domain.site.object.SiteFresh;
 import de.ottorohenkohl.bloggin.domain.site.value.TitleMapper;
 import de.ottorohenkohl.bloggin.domain.widget.WidgetFreshMapper;
