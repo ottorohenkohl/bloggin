@@ -35,6 +35,10 @@
             <version>1.0</version>
         </dependency>
         <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-oidc</artifactId>
+        </dependency>
+        <dependency>
             <artifactId>quarkus-jdbc-postgresql</artifactId>
             <groupId>io.quarkus</groupId>
         </dependency>

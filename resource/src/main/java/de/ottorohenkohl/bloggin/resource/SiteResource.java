@@ -3,6 +3,7 @@ package de.ottorohenkohl.bloggin.resource;
 import de.ottorohenkohl.bloggin.domain.site.SiteService;
 import de.ottorohenkohl.bloggin.domain.site.object.SiteExisting;
 import de.ottorohenkohl.bloggin.domain.site.object.SiteFresh;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
@@ -10,14 +11,15 @@ import lombok.RequiredArgsConstructor;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("/site")
+@Path("/site/")
 @ApplicationScoped
 @RequiredArgsConstructor
 public class SiteResource extends BaseResource {
     
     private final SiteService siteService;
     
-    @Path("/{identifier}")
+    @Path("{identifier}")
+    @RolesAllowed("manager")
     @DELETE
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -25,7 +27,7 @@ public class SiteResource extends BaseResource {
         return Response.created(getPath("/page/%s", siteService.removeExistingSite(identifier).identifier())).build();
     }
     
-    @Path("/{identifier}")
+    @Path("{identifier}")
     @GET
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -33,7 +35,8 @@ public class SiteResource extends BaseResource {
         return Response.ok(siteService.findExistingSite(identifier)).build();
     }
     
-    @Path("/")
+    @Path("")
+    @RolesAllowed("manager")
     @GET
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -41,7 +44,8 @@ public class SiteResource extends BaseResource {
         return Response.ok(siteService.findExistingSites(getPage(count, start))).build();
     }
     
-    @Path("/")
+    @Path("")
+    @RolesAllowed("manager")
     @PATCH
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -49,7 +53,8 @@ public class SiteResource extends BaseResource {
         return Response.accepted(siteService.changeExistingSite(siteExisting)).build();
     }
     
-    @Path("/")
+    @Path("")
+    @RolesAllowed("manager")
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)

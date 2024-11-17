@@ -2,6 +2,7 @@ package de.ottorohenkohl.bloggin.resource;
 
 import de.ottorohenkohl.bloggin.domain.config.ConfigService;
 import de.ottorohenkohl.bloggin.domain.config.object.ConfigExisting;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
@@ -9,14 +10,14 @@ import lombok.RequiredArgsConstructor;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("/config")
+@Path("/config/")
 @ApplicationScoped
 @RequiredArgsConstructor
 public class ConfigResource extends BaseResource {
     
     private final ConfigService configService;
     
-    @Path(("/"))
+    @Path((""))
     @GET
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -24,7 +25,8 @@ public class ConfigResource extends BaseResource {
         return Response.ok(configService.findExistingConfig()).build();
     }
     
-    @Path("/config")
+    @Path("config")
+    @RolesAllowed("admin")
     @PUT
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)

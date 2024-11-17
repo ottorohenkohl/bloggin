@@ -5,6 +5,7 @@ import de.ottorohenkohl.bloggin.domain.menu.object.CategoryFresh;
 import de.ottorohenkohl.bloggin.domain.menu.object.ItemFresh;
 import de.ottorohenkohl.bloggin.domain.menu.object.MenuFresh;
 import de.ottorohenkohl.bloggin.domain.menu.object.SectionFresh;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
@@ -12,14 +13,15 @@ import lombok.RequiredArgsConstructor;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("/menu")
+@Path("/menu/")
 @ApplicationScoped
 @RequiredArgsConstructor
 public class MenuResource extends BaseResource {
     
     private final MenuService menuService;
     
-    @Path("/category/{identifier}")
+    @Path("category/{identifier}")
+    @RolesAllowed("manager")
     @DELETE
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -27,7 +29,8 @@ public class MenuResource extends BaseResource {
         return Response.accepted(menuService.removeCategory(identifier)).build();
     }
     
-    @Path("/{identifier}")
+    @Path("{identifier}")
+    @RolesAllowed("manager")
     @DELETE
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -35,7 +38,8 @@ public class MenuResource extends BaseResource {
         return Response.accepted(menuService.removeExistingMenu(identifier)).build();
     }
     
-    @Path("/category/section/item/{identifier}")
+    @Path("category/section/item/{identifier}")
+    @RolesAllowed("manager")
     @DELETE
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -43,7 +47,8 @@ public class MenuResource extends BaseResource {
         return Response.accepted(menuService.removeItem(identifier)).build();
     }
     
-    @Path("/category/section/{identifier}")
+    @Path("category/section/{identifier}")
+    @RolesAllowed("manager")
     @DELETE
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -51,7 +56,7 @@ public class MenuResource extends BaseResource {
         return Response.accepted(menuService.removeSection(identifier)).build();
     }
     
-    @Path("/{identifier}")
+    @Path("{identifier}")
     @GET
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -59,7 +64,8 @@ public class MenuResource extends BaseResource {
         return Response.ok(menuService.findExistingMenu(identifier)).build();
     }
     
-    @Path("/")
+    @Path("")
+    @RolesAllowed("manager")
     @GET
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -67,7 +73,8 @@ public class MenuResource extends BaseResource {
         return Response.ok(menuService.findExistingMenus(getPage(count, start))).build();
     }
     
-    @Path("/{identifier}/category")
+    @Path("{identifier}/category")
+    @RolesAllowed("manager")
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -75,7 +82,8 @@ public class MenuResource extends BaseResource {
         return Response.accepted(menuService.storeFreshCategoryInMenu(identifier, categoryFresh)).build();
     }
     
-    @Path("/category/section/{identifier}/item")
+    @Path("category/section/{identifier}/item")
+    @RolesAllowed("manager")
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -83,7 +91,8 @@ public class MenuResource extends BaseResource {
         return Response.accepted(menuService.storeFreshItemInSection(identifier, itemFresh)).build();
     }
     
-    @Path("/")
+    @Path("")
+    @RolesAllowed("manager")
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -91,7 +100,8 @@ public class MenuResource extends BaseResource {
         return Response.created(getPath("/menu/%s", menuService.storeFreshMenu(menuFresh).identifier())).build();
     }
     
-    @Path("/category/{identifier}/section")
+    @Path("category/{identifier}/section")
+    @RolesAllowed("manager")
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
