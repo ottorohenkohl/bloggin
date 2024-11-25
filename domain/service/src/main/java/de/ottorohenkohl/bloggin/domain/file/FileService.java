@@ -1,6 +1,7 @@
 package de.ottorohenkohl.bloggin.domain.file;
 
 import de.ottorohenkohl.bloggin.domain.core.value.Identifier;
+import de.ottorohenkohl.bloggin.domain.file.constant.Visibility;
 import de.ottorohenkohl.bloggin.domain.file.object.FileExisting;
 import de.ottorohenkohl.bloggin.domain.file.object.FileFresh;
 import de.ottorohenkohl.bloggin.domain.file.object.FileInfo;
@@ -28,7 +29,7 @@ public class FileService {
     
     @Transactional
     public List<FileInfo> findExistingFiles(Page page) {
-        return fileRepository.read(page).stream().map(fileInfoMapper::export).toList();
+        return fileRepository.read(page, Visibility.PUBLIC).stream().map(fileInfoMapper::export).toList();
     }
     
     @Transactional

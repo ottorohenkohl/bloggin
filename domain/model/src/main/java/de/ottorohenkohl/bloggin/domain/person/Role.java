@@ -1,10 +1,9 @@
-package de.ottorohenkohl.bloggin.domain.file;
+package de.ottorohenkohl.bloggin.domain.person;
 
 import de.ottorohenkohl.bloggin.domain.core.Identifiable;
-import de.ottorohenkohl.bloggin.domain.file.constant.Visibility;
-import de.ottorohenkohl.bloggin.domain.file.value.Data;
-import de.ottorohenkohl.bloggin.domain.file.value.Mimetype;
+import de.ottorohenkohl.bloggin.domain.person.constant.Scope;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -17,16 +16,14 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @Setter
-public class File extends Identifiable {
+public class Role extends Identifiable {
+    
+    @ManyToOne
+    @NotNull
+    @Valid
+    private Person person;
     
     @NotNull
     @Valid
-    private Data data;
-    
-    @NotNull
-    @Valid
-    private Mimetype mimetype;
-    
-    @NotNull
-    private Visibility visibility;
+    private Scope scope;
 }

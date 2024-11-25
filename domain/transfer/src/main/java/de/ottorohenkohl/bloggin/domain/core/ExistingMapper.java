@@ -3,7 +3,7 @@ package de.ottorohenkohl.bloggin.domain.core;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Named;
 
-public abstract class ExistingMapper<I extends Identifiable, O> implements FunctionalMapper<I, O>, MergeMapper<I> {
+public abstract class ExistingMapper<I extends Identifiable, O> implements FunctionalMapper<I, O>, MergingMapper<I> {
     
     public abstract Repository<I> getRepository();
     
