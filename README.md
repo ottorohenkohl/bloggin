@@ -74,3 +74,7 @@ Container-Images werden in der **Docker-Registry unter `ctr.ottorohenkohl.de`** 
 - [Quarkus Dokumentation](https://https://quarkus.io/guides/) – Detaillierte Anleitungen und Konfigurationsoptionen für Quarkus.
 - [MapStruct](https://mapstruct.org/) – Weitere Informationen zur Mapper-Bibliothek.
 - [Hibernate](https://hibernate.org/) – Details zum ORM und Validierungsframework.
+
+---
+
+Dieses Repository wird automatisch von [Otto Rohenkohl / Lab](http://lab.ottorohenkohl.de/entwicklung/java/bloggin) gespiegelt.
