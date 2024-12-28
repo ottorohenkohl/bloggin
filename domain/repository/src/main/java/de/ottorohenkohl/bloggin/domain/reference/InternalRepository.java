@@ -2,8 +2,6 @@ package de.ottorohenkohl.bloggin.domain.reference;
 
 import de.ottorohenkohl.bloggin.domain.core.Repository;
 import de.ottorohenkohl.bloggin.domain.core.value.Identifier;
-import de.ottorohenkohl.bloggin.domain.site.Site;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.hibernate.annotations.processing.Find;
 
 import java.util.List;

@@ -1,7 +1,6 @@
 package de.ottorohenkohl.bloggin.middleware.exception;
 
 import io.quarkus.logging.Log;
-import jakarta.persistence.NoResultException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;

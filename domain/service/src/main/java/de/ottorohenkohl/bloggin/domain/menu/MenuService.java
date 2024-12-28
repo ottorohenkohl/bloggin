@@ -7,7 +7,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.query.Page;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @ApplicationScoped
