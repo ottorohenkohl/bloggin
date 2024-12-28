@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <artifactId>bloggin.domain.service</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+
+    <dependencies>
+        <dependency>
+            <artifactId>bloggin.domain.repository</artifactId>
+            <groupId>de.ottorohenkohl</groupId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <artifactId>bloggin.domain.transfer</artifactId>
+            <groupId>de.ottorohenkohl</groupId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
+    <parent>
+        <artifactId>bloggin.domain</artifactId>
+        <groupId>de.ottorohenkohl</groupId>
+        <version>1.0</version>
+    </parent>
+</project>

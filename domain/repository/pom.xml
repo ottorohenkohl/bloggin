@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <artifactId>bloggin.domain.repository</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+
+                <configuration>
+                    <annotationProcessorPaths>
+                        <dependency>
+                            <artifactId>lombok</artifactId>
+                            <groupId>org.projectlombok</groupId>
+                            <version>1.18.34</version>
+                        </dependency>
+                        <path>
+                            <artifactId>hibernate-jpamodelgen</artifactId>
+                            <groupId>org.hibernate.orm</groupId>
+                            <version>6.6.2.Final</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <artifactId>bloggin.domain.model</artifactId>
+            <groupId>de.ottorohenkohl</groupId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <artifactId>quarkus-hibernate-orm</artifactId>
+            <groupId>io.quarkus</groupId>
+        </dependency>
+        <dependency>
+            <artifactId>quarkus-hibernate-validator</artifactId>
+            <groupId>io.quarkus</groupId>
+        </dependency>
+    </dependencies>
+
+    <parent>
+        <artifactId>bloggin.domain</artifactId>
+        <groupId>de.ottorohenkohl</groupId>
+        <version>1.0</version>
+    </parent>
+</project>
