@@ -2,22 +2,23 @@ package de.ottorohenkohl.bloggin.resource;
 
 import de.ottorohenkohl.bloggin.domain.config.ConfigService;
 import de.ottorohenkohl.bloggin.domain.config.object.ConfigExisting;
-import jakarta.annotation.security.RolesAllowed;
+import de.ottorohenkohl.bloggin.middleware.interceptor.RequiredRole;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
 
+import static de.ottorohenkohl.bloggin.domain.person.constant.Scope.ADMIN;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("/config/")
+@Path("/config")
 @ApplicationScoped
 @RequiredArgsConstructor
 public class ConfigResource extends BaseResource {
     
     private final ConfigService configService;
     
-    @Path((""))
+    @Path(("/"))
     @GET
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -25,12 +26,14 @@ public class ConfigResource extends BaseResource {
         return Response.ok(configService.findExistingConfig()).build();
     }
     
-    @Path("config")
-    @RolesAllowed("admin")
+    @Path("/")
     @PUT
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @RequiredRole(ADMIN)
     public Response putFreshConfig(ConfigExisting configExisting) {
-        return Response.created(getPath("/config/%s", configService.changeExistingConfig(configExisting).identifier())).build();
+        configService.changeExistingConfig(configExisting);
+        
+        return Response.created(getPath("/config")).build();
     }
 }

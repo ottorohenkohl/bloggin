@@ -1,4 +1,4 @@
-package de.ottorohenkohl.bloggin.middleware.exception;
+package de.ottorohenkohl.bloggin.middleware.handler;
 
 import io.quarkus.logging.Log;
 import jakarta.persistence.NoResultException;

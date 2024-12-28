@@ -35,8 +35,8 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>io.quarkus</groupId>
             <artifactId>quarkus-oidc</artifactId>
+            <groupId>io.quarkus</groupId>
         </dependency>
         <dependency>
             <artifactId>quarkus-jdbc-postgresql</artifactId>
@@ -48,6 +48,10 @@
         </dependency>
         <dependency>
             <artifactId>quarkus-rest-jackson</artifactId>
+            <groupId>io.quarkus</groupId>
+        </dependency>
+        <dependency>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
             <groupId>io.quarkus</groupId>
         </dependency>
     </dependencies>

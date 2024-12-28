@@ -5,58 +5,59 @@ import de.ottorohenkohl.bloggin.domain.menu.object.CategoryFresh;
 import de.ottorohenkohl.bloggin.domain.menu.object.ItemFresh;
 import de.ottorohenkohl.bloggin.domain.menu.object.MenuFresh;
 import de.ottorohenkohl.bloggin.domain.menu.object.SectionFresh;
-import jakarta.annotation.security.RolesAllowed;
+import de.ottorohenkohl.bloggin.middleware.interceptor.RequiredRole;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
 
+import static de.ottorohenkohl.bloggin.domain.person.constant.Scope.MANAGER;
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("/menu/")
+@Path("/menu")
 @ApplicationScoped
 @RequiredArgsConstructor
 public class MenuResource extends BaseResource {
     
     private final MenuService menuService;
     
-    @Path("category/{identifier}")
-    @RolesAllowed("manager")
+    @Path("/category/{identifier}")
     @DELETE
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @RequiredRole(MANAGER)
     public Response deleteCategoryFromMenu(@PathParam("identifier") String identifier) {
         return Response.accepted(menuService.removeCategory(identifier)).build();
     }
     
-    @Path("{identifier}")
-    @RolesAllowed("manager")
+    @Path("/{identifier}")
     @DELETE
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @RequiredRole(MANAGER)
     public Response deleteExistingMenu(@PathParam("identifier") String identifier) {
         return Response.accepted(menuService.removeExistingMenu(identifier)).build();
     }
     
-    @Path("category/section/item/{identifier}")
-    @RolesAllowed("manager")
+    @Path("/category/section/item/{identifier}")
     @DELETE
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @RequiredRole(MANAGER)
     public Response deleteItemFromSection(@PathParam("identifier") String identifier) {
         return Response.accepted(menuService.removeItem(identifier)).build();
     }
     
-    @Path("category/section/{identifier}")
-    @RolesAllowed("manager")
+    @Path("/category/section/{identifier}")
     @DELETE
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @RequiredRole(MANAGER)
     public Response deleteSectionFromCategory(@PathParam("identifier") String identifier) {
         return Response.accepted(menuService.removeSection(identifier)).build();
     }
     
-    @Path("{identifier}")
+    @Path("/{identifier}")
     @GET
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
@@ -64,47 +65,47 @@ public class MenuResource extends BaseResource {
         return Response.ok(menuService.findExistingMenu(identifier)).build();
     }
     
-    @Path("")
-    @RolesAllowed("manager")
+    @Path("/")
     @GET
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @RequiredRole(MANAGER)
     public Response getExistingMenus(@QueryParam("count") Integer count, @QueryParam("start") Integer start) {
         return Response.ok(menuService.findExistingMenus(getPage(count, start))).build();
     }
     
-    @Path("{identifier}/category")
-    @RolesAllowed("manager")
+    @Path("/{identifier}/category")
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @RequiredRole(MANAGER)
     public Response postFreshCategoryInMenu(@PathParam("identifier") String identifier, CategoryFresh categoryFresh) {
         return Response.accepted(menuService.storeFreshCategoryInMenu(identifier, categoryFresh)).build();
     }
     
-    @Path("category/section/{identifier}/item")
-    @RolesAllowed("manager")
+    @Path("/category/section/{identifier}/item")
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @RequiredRole(MANAGER)
     public Response postFreshItemInSection(@PathParam("identifier") String identifier, ItemFresh itemFresh) {
         return Response.accepted(menuService.storeFreshItemInSection(identifier, itemFresh)).build();
     }
     
-    @Path("")
-    @RolesAllowed("manager")
+    @Path("/")
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @RequiredRole(MANAGER)
     public Response postFreshMenu(MenuFresh menuFresh) {
         return Response.created(getPath("/menu/%s", menuService.storeFreshMenu(menuFresh).identifier())).build();
     }
     
-    @Path("category/{identifier}/section")
-    @RolesAllowed("manager")
+    @Path("/category/{identifier}/section")
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
+    @RequiredRole(MANAGER)
     public Response postFreshSectionInCategory(@PathParam("identifier") String identifier, SectionFresh sectionFresh) {
         return Response.accepted(menuService.storeFreshSectionInCategory(identifier, sectionFresh)).build();
     }
