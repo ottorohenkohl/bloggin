@@ -34,6 +34,14 @@ public class SiteResource extends BaseResource {
     }
     
     @Path("/")
+    @GET
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    public Response getExistingSites(@QueryParam("count") Integer count, @QueryParam("start") Integer start) {
+        return Response.ok(siteService.findExistingSites(getPage(count, start))).build();
+    }
+    
+    @Path("/")
     @PATCH
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)

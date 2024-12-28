@@ -24,6 +24,14 @@ public class ReferenceResource extends BaseResource {
         return Response.created(getPath("/reference/%s", referenceService.removeExistingReference(identifier).identifier())).build();
     }
     
+    @Path("/blank")
+    @GET
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    public Response getExistingInternalsWithoutTarget() {
+        return Response.ok(referenceService.findExistingInternalsWithoutTarget()).build();
+    }
+    
     @Path("/{identifier}")
     @GET
     @Consumes(APPLICATION_JSON)
@@ -36,8 +44,8 @@ public class ReferenceResource extends BaseResource {
     @GET
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public Response getExistingInternalsWithoutTarget() {
-        return Response.ok(referenceService.findExistingInternalsWithoutTarget()).build();
+    public Response getExistingReferences(@QueryParam("count") Integer count, @QueryParam("start") Integer start) {
+        return Response.ok(referenceService.findExistingReferences(getPage(count, start))).build();
     }
     
     @Path("/")

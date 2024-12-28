@@ -59,6 +59,14 @@ public class MenuResource extends BaseResource {
         return Response.ok(menuService.findExistingMenu(identifier)).build();
     }
     
+    @Path("/")
+    @GET
+    @Consumes(APPLICATION_JSON)
+    @Produces(APPLICATION_JSON)
+    public Response getExistingMenus(@QueryParam("count") Integer count, @QueryParam("start") Integer start) {
+        return Response.ok(menuService.findExistingMenus(getPage(count, start))).build();
+    }
+    
     @Path("/{identifier}/category")
     @POST
     @Consumes(APPLICATION_JSON)
